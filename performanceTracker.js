@@ -27,12 +27,15 @@ Template.body.events({
   },
   'click #clickServices':function(){
     Session.set('departmentSelected',"SERVICES");
+    Session.set('isEmployee',null);
   },
   'click #clickCustomerCare':function(){
     Session.set('departmentSelected',"CUSTOMER CARE");
+    Session.set('isEmployee',null);
   },
   'click #clickSpare':function(){
     Session.set('departmentSelected',"SPARE");
+    Session.set('isEmployee',null);
   }
 });
 
@@ -40,6 +43,8 @@ Template.employee.events({
   'click #clickEmployee':function(){
     Session.set('isEmployee',this.employeeName);
     console.log(Session.get('isEmployee'));
+    console.log(this);
+    $(this).attr('class') == "list-group-item active";
   }
 });
 

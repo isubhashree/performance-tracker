@@ -3,30 +3,23 @@
 </head>
 
 <body>
-	<h1>Welcome to Meteor!</h1>
 	<div class="row">
-		<div class="col-md-4 col-sm-4">
-			<ul id="main">
-				<h2>Dashboard</h2>
-				<ul>
-					<h3>Departments</h3>
-						<ul id="departmentsList">
-						<li>
-							<a href="#demo" data-toggle="collapse" id="clickSales">Sales</a>
-							<div id="demo" class="collapse">
+		<div class="col-md-2 col-sm-8">
+		<h3>Dashboard</h3>
+		<ul id="dashboard" class="list-group"> 
+		<h4>Departments</h4>
+		<a href="#demo" data-toggle="collapse" id="clickSales" class="list-group-item">Sales</a>
+							<div id="demo" class="collapse list-group">
 							<ul>
 								{{#each employees}}
 								{{> employee}}
 								{{/each}}
 							</ul>
-							</div>				
-						</li>
-						<li><a href="#" id="clickServices">Service</a></li>
-						<li><a href="#" id="clickSpare">Spare</a></li>
-						<li><a href="#" id="clickCustomerCare">Customer Care</a></li>
-					</ul>
-									</ul>
-			</ul>
+							</div>										
+						<a href="#" id="clickServices" class="list-group-item">Service</a>
+						<a href="#" id="clickSpare" class="list-group-item">Spare</a>
+						<a href="#" id="clickCustomerCare" class="list-group-item">Customer Care</a>
+		</ul>				
 		</div>
 		<div class="col-md-8 col-sm-8" id="employeeSales">
 		<h3>{{departmentSelected}}</h3>
@@ -39,7 +32,7 @@
 </body>
 
 <template name="employee">
-	<li><a href="#employeeSales" id="clickEmployee">{{employeeName}}</a></li>
+	<a href="#employeeSales" id="clickEmployee" class="list-group-item">{{employeeName}}</a>
 </template>
 
 <template name="employeeDataEntry">
