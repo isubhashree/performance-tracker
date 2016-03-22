@@ -1,0 +1,53 @@
+<head>
+	<title>performanceTracker</title>
+</head>
+
+<body>
+	<h1>Welcome to Meteor!</h1>
+	<div class="row">
+		<div class="col-md-4 col-sm-4">
+			<ul id="main">
+				<h2>Dashboard</h2>
+				<ul>
+					<h3>Departments</h3>
+						<ul id="departmentsList">
+						<li>
+							<a href="#demo" data-toggle="collapse" id="clickSales">Sales</a>
+							<div id="demo" class="collapse">
+							<ul>
+								{{#each employees}}
+								{{> employee}}
+								{{/each}}
+							</ul>
+							</div>				
+						</li>
+						<li><a href="#" id="clickServices">Service</a></li>
+						<li><a href="#" id="clickSpare">Spare</a></li>
+						<li><a href="#" id="clickCustomerCare">Customer Care</a></li>
+					</ul>
+									</ul>
+			</ul>
+		</div>
+		<div class="col-md-8 col-sm-8" id="employeeSales">
+		<h3>{{departmentSelected}}</h3>
+			{{#if isEmployee}}
+			{{> employeeDataEntry}}
+			{{/if}}
+		</div>
+	</div>
+	
+</body>
+
+<template name="employee">
+	<li><a href="#employeeSales" id="clickEmployee">{{employeeName}}</a></li>
+</template>
+
+<template name="employeeDataEntry">
+<div>
+<h4>Hi!&nbsp;{{entryName}}</h4>
+	<input placeholder="enter your name here"/>
+	<input placeholder="enter your ID here"/>
+	<button type="submit">Enter Data</button>
+</div>
+</template>
+
