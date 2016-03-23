@@ -1,18 +1,23 @@
+EmployeesCollection = new Meteor.Collection("employees");
+VehicleModels = new Meteor.Collection("vehicle_models");
+VehicleTypes = new Meteor.Collection("vehicle_types");
+RetailCollection = new Meteor.Collection("retail");
+
+
 if (Meteor.isClient) {
 
 Template.body.onRendered({
 
+
 });
 
 Template.body.helpers({
-  employees:[
-    {employeeName: "Subhashree"},
-    {employeeName: "Rajashree"},
-    {employeeName: "Rajan"}
-  ],
+  'employeeList':function(){
+    return EmployeesCollection.find();
+  },
 
-  'isEmployee':function(){
-    return Session.get('isEmployee');
+  'currentEmployee':function(){
+    return Session.get('currentEmployee');
   },
 
   'departmentSelected':function(){
@@ -27,22 +32,22 @@ Template.body.events({
   },
   'click #clickServices':function(){
     Session.set('departmentSelected',"SERVICES");
-    Session.set('isEmployee',null);
+    Session.set('currentEmployee',null);
   },
   'click #clickCustomerCare':function(){
     Session.set('departmentSelected',"CUSTOMER CARE");
-    Session.set('isEmployee',null);
+    Session.set('currentEmployee',null);
   },
   'click #clickSpare':function(){
     Session.set('departmentSelected',"SPARE");
-    Session.set('isEmployee',null);
+    Session.set('currentEmployee',null);
   }
 });
 
 Template.employee.events({
   'click #clickEmployee':function(){
-    Session.set('isEmployee',this.employeeName);
-    console.log(Session.get('isEmployee'));
+    Session.set('currentEmployee',this.name);
+    console.log(Session.get('currentEmployee'));
     console.log(this);
     $(this).attr('class') == "list-group-item active";
   }
@@ -50,7 +55,15 @@ Template.employee.events({
 
 Template.employeeDataEntry.helpers({
   'entryName':function(){
-    return Session.get('isEmployee');
+    return Session.get('currentEmployee');
+  },
+
+  'types':function(){
+    return VehicleTypes.find();
+  },
+
+  'models':function(){
+    return VehicleModels.find();
   }
 });
 
@@ -58,6 +71,10 @@ Template.employeeDataEntry.helpers({
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+   RetailCollection._ensureIndex({employeeName: 1, vehicleModel: 1, quantitySold:1, createdAt: 1}, {unique: 1});
+  });
+
+  Meteor.methods({
+    
   });
 }
