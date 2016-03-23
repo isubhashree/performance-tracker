@@ -1,31 +1,21 @@
 <head>
-	<title>performanceTracker</title>
+	<title>Performance Tracker</title>
 </head>
 
 <body>
-	<div class="row">
-		<div class="col-md-2 col-sm-8">
-      <h3>Dashboard</h3>
-      <ul id="dashboard" class="list-group"> 
-        <h4>Departments</h4>
-        <a href="#demo" data-toggle="collapse" id="clickSales" class="list-group-item">Sales</a>
-        <div id="demo" class="collapse list-group">
-          <ul>
-            {{#each employeeList}}
-              {{> employee}}
-            {{/each}}
-          </ul>
-        </div>										
-        <a href="#" id="clickServices" class="list-group-item">Service</a>
-        <a href="#" id="clickSpare" class="list-group-item">Spare</a>
-        <a href="#" id="clickCustomerCare" class="list-group-item">Customer Care</a>
-      </ul>				
-    </div>
-    <div class="col-md-8 col-sm-8" id="employeeSales">
-      <h3>{{departmentSelected}}</h3>
-      {{#if currentEmployee}}
-        {{> employeeDataEntry}}
-      {{/if}}
+  {{> header}}
+  <div id="wrapper">
+    {{> sidebar}}
+    <div id="page-content-wrapper">
+      <div id="content">
+        <div class="page-title">
+          Dashboard
+          <!-- {{departmentSelected}} -->
+        </div>
+        {{#if currentEmployee}}
+          {{> employeeDataEntry}}
+        {{/if}}
+      </div>
     </div>
   </div>
 </body>
@@ -81,3 +71,147 @@
   </div>
 </template>
 
+<template name="header">
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Performance Tracker</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</template>
+
+<template name="sidebar">
+  <div id="sidebar-wrapper">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <i class="fa fa-briefcase"></i>
+              Sales
+            </h4>
+          </div>
+        </a>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item btn-block">Manoj</a>
+              <a href="#" class="list-group-item">Ramesh</a>
+              <a href="#" class="list-group-item">Rakesh</a>
+              <a href="#" class="list-group-item">Harish</a>
+              {{#each employeeList}}
+                {{> employee}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <i class="fa fa-wrench"></i>
+              Service
+            </h4>
+          </div>
+        </a>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item">Manoj</a>
+              <a href="#" class="list-group-item">Ramesh</a>
+              <a href="#" class="list-group-item">Rakesh</a>
+              <a href="#" class="list-group-item">Harish</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+              <i class="fa fa-cogs"></i>
+              Spare
+            </h4>
+          </div>
+        </a>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item">Manoj</a>
+              <a href="#" class="list-group-item">Ramesh</a>
+              <a href="#" class="list-group-item">Rakesh</a>
+              <a href="#" class="list-group-item">Harish</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+          <div class="panel-heading" role="tab" id="headingFour">
+            <h4 class="panel-title">
+              <i class="fa fa-user"></i>
+              Customer Care
+            </h4>
+          </div>
+        </a>
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item">Manoj</a>
+              <a href="#" class="list-group-item">Ramesh</a>
+              <a href="#" class="list-group-item">Rakesh</a>
+              <a href="#" class="list-group-item">Harish</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
